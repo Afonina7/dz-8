@@ -1,19 +1,20 @@
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 public class Main {
 
     public static void main(String[] args) {
 
-        StudentGroup studentGroup = new StudentGroup(new Student(1, "Vova", "Lvov"));
+        Student student1 = new Student(1, "Jhon", "Khonor", "вивчити інкапсуляцію");
+        Student student2 = new Student(2, "Bob", "Cool", "Do something");
+        Student student3 = new Student(3, "Gray", "Mors", "Do something");
+        Student student4 = new Student(4, "Alex", "Borovich", "Do something");
+        Student student5 = new Student(5, "Faust", "Grou", "Do something");
 
-        Student leader = studentGroup.changeGroupLeader(new Student(2, "Ivan", "Bohyn"));
+        StudentGroup studentGroup = new StudentGroup(student5);
 
-        Student newLeader = studentGroup.changeGroupLeader(new Student(3, "Nik", "Ivanov"));
+        Student newLeader = studentGroup.changeGroupLeader(student4);
 
-        System.out.println("Leader ID is: " + leader.getStudentId() + "\n" + "First name is: " + leader.getFirstName()
-                + "\n" + "Last name is: " + leader.getLastName());
+        System.out.println("Leader ID is: " + student5.getStudentId() + "\n" + "First name is: " + student5.getFirstName()
+                + "\n" + "Last name is: " + student5.getLastName());
 
         System.out.println("");
 
@@ -21,19 +22,20 @@ public class Main {
                 + "\n" + "Last name is: " + newLeader.getLastName());
 
         //Adding student
-        studentGroup.addStudent(new Student(4, "Jhon", "Ivanov"));
-        studentGroup.addStudent(new Student(5, "Bob", "Ivanov"));
-        studentGroup.addStudent(new Student(6, "Mike", "Ivanov"));
-        studentGroup.addStudent(new Student(7, "Olof", "Ivanov"));
+        studentGroup.addStudent(student1);
+        studentGroup.addStudent(student2);
+        studentGroup.addStudent(student3);
+        studentGroup.addStudent(student4);
 
         //Removing student
-        studentGroup.removeStudent(new Student(7, "Olof", "Ivanov"));
+        studentGroup.removeStudent(student4);
 
         //Adding task for group
         studentGroup.addGroupTask("Task for group");
 
         //Mark task is done for student
-        studentGroup.markTaskAsDone(new Student(4, "Jhon", "Ivanov"), "Вивчити інкапсуляцію");
+        studentGroup.markTaskAsDone(student1);
+        studentGroup.markTaskAsDone(student2);
     }
 }
 

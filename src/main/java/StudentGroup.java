@@ -1,11 +1,14 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class StudentGroup {
 
     private Student groupLeader;
-    private final List<Student> students = new ArrayList<>();
+    private List<Student> students = new ArrayList<>();
     private final List<String> tasks = new ArrayList<>();
+    Map<String, List<Student>> completedTasks = new HashMap<>();
 
 
     public StudentGroup(Student groupLeader) {
@@ -30,11 +33,16 @@ public class StudentGroup {
         return false;
     }
 
-    public boolean markTaskAsDone(Student student, String task) {
-        if (students.contains(student) && tasks.contains(task)) {
-            System.out.println("Завдання " + task + "виконано!");
+    public void markTaskAsDone(Student student) {
+        String task = student.getTask();
+        List<Student> studentsList = completedTasks.get(task);
+
+        if (studentsList == null) {
+            studentsList = new ArrayList<>();
+            completedTasks.put(task, studentsList);
         }
-        return false;
+
+        studentsList.add(student);
     }
 
     @Override
