@@ -3,13 +3,11 @@ public class Student {
     private final int studentId;
     private final String firstName;
     private final String lastName;
-    private String task;
 
-    public Student(int studentId, String firstName, String lastName, String task) {
+    public Student(int studentId, String firstName, String lastName) {
         this.studentId = studentId;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.task = task;
     }
 
     public int getStudentId() {
@@ -22,9 +20,5 @@ public class Student {
 
     public String getLastName() {
         return lastName;
-    }
-
-    public String getTask() {
-        return task;
     }
 }

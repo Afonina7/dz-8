@@ -8,7 +8,7 @@ public class StudentGroup {
     private Student groupLeader;
     private List<Student> students = new ArrayList<>();
     private final List<String> tasks = new ArrayList<>();
-    Map<String, List<Student>> completedTasks = new HashMap<>();
+    Map<List<Student>, String> completedTasks = new HashMap<>();
 
 
     public StudentGroup(Student groupLeader) {
@@ -21,11 +21,18 @@ public class StudentGroup {
     }
 
     public void addStudent(Student student) {
+        if (students.contains(student)) {
+            System.out.println("This student is already exist! You are can't add him.");
+        }
         this.students.add(student);
     }
 
     public void removeStudent(Student student) {
-        this.students.remove(student);
+        if (student == groupLeader) {
+            System.out.println("You are can't remove this student because he is a Group Leader!");
+        } else {
+            this.students.remove(student);
+        }
     }
 
     public boolean addGroupTask(String task) {
@@ -33,16 +40,13 @@ public class StudentGroup {
         return false;
     }
 
-    public void markTaskAsDone(Student student) {
-        String task = student.getTask();
-        List<Student> studentsList = completedTasks.get(task);
-
-        if (studentsList == null) {
-            studentsList = new ArrayList<>();
-            completedTasks.put(task, studentsList);
+    public void markTaskAsDone(Student student, String task) {
+        if (students.contains(student) && this.tasks.contains(task)) {
+            completedTasks.put(students, task);
+            System.out.println("Завдання " + task + " виконано!");
+        } else {
+            System.out.println("Завдання " + task + " поки що НЕ виконано!");
         }
-
-        studentsList.add(student);
     }
 
     @Override
